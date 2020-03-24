@@ -1,0 +1,44 @@
+ 
+ --table structure
+ SELECT *
+ FROM met
+ LIMIT 10;
+ 
+ --# pieces
+ SELECT count(*)
+ FROM met;
+ 
+ --celery count
+ SELECT DISTINCT category
+ FROM met
+ WHERE category LIKE '%celery%';
+ 
+ --oldest piece
+ SELECT min(date), title, medium
+ FROM met;
+ 
+ --top 10 countries
+ SELECT country, count(*)
+ FROM met
+ WHERE country IS NOT NULL
+ GROUP BY 1
+ Order by 2 DESC
+ LIMIT 10;
+ 
+ --top categories
+ SELECT category, count(*)
+ FROM met
+ GROUP BY 1
+ HAVING count(*) > 100
+ ORDER BY 2 DESC;
+ 
+ --bling
+ SELECT CASE 
+   WHEN medium LIKE '%gold%' THEN 'Gold'
+   WHEN medium LIKE '%silver%' THEN 'Silver'
+   ELSE NULL
+   END AS 'Bling', count(*)
+ FROM met
+ WHERE Bling IS NOT NULL
+ GROUP BY 1
+ ORDER BY 2 DESC;
